@@ -1,0 +1,11 @@
+{
+  "reservation": [
+    {
+      "name": "test",
+      "phone_number": "test",
+      "email": "test",
+      "unique_id": "test"
+    }
+  ],
+  "waitlist": []
+}

@@ -1,0 +1,20 @@
+path /tables - view table button - table.html
+    array Reserved tables
+    array of waiting list
+    GET arrays for display on path /tables
+    Display on DOM
+path /reserved  
+    take inputs from form
+    store in an object
+    POST into array
+    if array.length is less than 6 POST to waiting array
+    on post alert you are booked/you are waitlisted
+path /api/tables
+    display array for reserved
+path /api/waitlist
+    display array for waiting
+path /api/new
+    adding a new
+clear table action
+    DELETE of all items in array 1 and 2
+    refresh tables page
