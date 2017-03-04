@@ -65,7 +65,49 @@
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS LOADED FROM OUR SERVER -->
 <script type="text/javascript">
 $.get("/api/tables", function(res){
-	console.log(res);
+	console.log(JSON.stringify(res));
+	res.forEach(function(obj){
+		var name = obj.name;
+		var name = obj.phone_number;
+		var name = obj.email;
+		var name = obj.unique_id;
+		var newAdd = $("<div>");
+		newAdd.attr("class", "well");
+		newAdd.attr("id", obj.unique_id);
+		$("#tableSection").append(newAdd);
+		var content = $("<h2>");
+		content.attr("class", "uniq-h2");
+		content.text(`ID: ${obj.unique_id} Name: ${obj.name}`);
+		$("#" + obj.unique_id).append(content);
+	});
 });
+$.get("/api/waitlist", function(res){
+	console.log(JSON.stringify(res));
+	res.forEach(function(obj){
+		var name = obj.name;
+		var name = obj.phone_number;
+		var name = obj.email;
+		var name = obj.unique_id;
+		var newAdd = $("<div>");
+		newAdd.attr("class", "well");
+		newAdd.attr("id", obj.unique_id);
+		$("#waitlistSection").append(newAdd);
+		var content = $("<h2>");
+		content.attr("class", "uniq-h2");
+		content.text(`ID: ${obj.unique_id} Name: ${obj.name}`);
+		$("#" + obj.unique_id).append(content);
+	});
+	$("#clear").on("click", function(){
+		$.ajax(
+			{
+			method: "delete",
+			path: "/api/tables"
+		}).done(function() {
+			$("#tableSection").empty();
+			$("#waitlistSection").empty();
+		});
+	});
+});
+
 </script>
 </html>

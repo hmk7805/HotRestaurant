@@ -1,9 +1,9 @@
-//Melinda
 // Dependencies
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+const jsonfile = require('jsonfile');
 
 // Sets up the Express App
 // =============================================================
@@ -19,6 +19,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+
 // Routes
 // ************************************
 // pages
@@ -33,7 +34,7 @@ app.get("/tables", function(req, res) {
 });
 
 // reserve
-app.get("/reserve", function(req, res) {
+app.get("reserve", function(req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
@@ -41,8 +42,8 @@ app.get("/reserve", function(req, res) {
 // new reservation 
 app.post("/api/new", function(req, res) {
     let reservation = req.body;
-    saveReservation(reservation);
-    res.json(reservation);
+    let added = saveReservation(reservation);
+    return res.json(added);
 });
 
 // tables
@@ -69,28 +70,30 @@ app.get("/api/waitlist", function(req, res) {
     return res.json(false);
 });
 
-// dependencies
-const jsonfile = require('jsonfile');
-
-// save new reservation
-function saveReservation(reservation) {
+// delete reservation 
+app.delete("/api/tables:tableid?", function(req, res) {
+    const deleteMe = req.param.tableid;
     // set file location
     const file = './reservations.json';
     // read in file contents
     let contents = jsonfile.readFileSync(file);
-    if (contents.reservation) {
-        // check for max 5 reservations, else waitlist
-        if (contents.reservation.length < 6 ) {
-            // push new reservation to table
-            contents.reservation.push(reservation);
-        } else {
-            // push new reservation to waitlist
-            contents.waitlist.push(reservation);
+    if (deleteMe) {
+        for (let i = 0; i < contents.reservation.length; i++) {
+            if (contents.reservation[i].unique_id ===  deleteMe.unique_id) {
+                contents.reservation.splice(i,1);
+                break;
+            }
         }
+        if (contents.waitlist.length) {
+            let newRes = contents.waitlist.splice(0,1);
+            let added = saveReservation(newRes);
+            return  res.json(true);
+        }
+    } else {
+        contents.reservation = [];
+        contents.waitlist = [];
         // write updated content to file 
         jsonfile.writeFileSync(file, contents, {spaces: 2});
-    }
-    return;
-}
-
- 
+        return  res.json(true);
+    } 
+});

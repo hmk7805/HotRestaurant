@@ -81,7 +81,6 @@
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
 <script type="text/javascript">
 	$(".submit").on("click", function(){
-		event.preventDefault();
 		var newReservation = {
 			name: $("#reserve_name").val().trim(),
 			phone_number: $("#reserve_phone").val().trim(),
