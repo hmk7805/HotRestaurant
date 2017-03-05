@@ -4,13 +4,14 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 const jsonfile = require('jsonfile');
+var nodemailer = require('nodemailer');
 
-// Sets up the Express App
+// Sets up the Express App - MO
 // =============================================================
 var app = express();
 var PORT = 3000;
 
-// Sets up the Express app to handle data parsing
+// Sets up the Express app to handle data parsing - MO
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
@@ -20,33 +21,68 @@ app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
 
-// Routes
-// ************************************
-// pages
-// home
+// mailing - MO
+var router = express.Router();
+app.use('/sayHello', router);
+router.post('/', handleSayHello); 
+// handle the route at yourdomain.com/sayHello - MO
+function handleSayHello(req, res) {
+    //created transport object in route handler - MO
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'mesarestaurant1116@gmail.com', // Your email id
+            pass: 'saturday' // Your password
+        }
+    });
+
+// HTML content to be sent in the body - MO
+var text = 'Hello world from \n\n' + req.body.name;
+//creating simple JSON object w/necessary values to send the email - MO
+var mailOptions = {
+    from: 'mesarestaurant1116@gmail.com>', // sender address
+    to: 'receiver@destination.com', // list of receivers
+    subject: 'Email Example', // Subject line
+    text: text //, // plaintext body
+    // html: '<b>Ta-da! ✔</b>' 
+}
+//send email and handle response - MO
+transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        console.log(error);
+        res.json({yo: 'error'});
+    }else{
+        console.log('Message sent: ' + info.response);
+        res.json({yo: info.response});
+    };
+ });
+};
+
+// Routes - JT
+// home page - JT
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "home.html"));
 });
 
-// tables
+// tables page - JT
 app.get("/tables", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
 });
 
-// reserve
-app.get("reserve", function(req, res) {
+// reserve page - JT
+app.get("/reserve", function(req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
 // api
-// new reservation 
+// new reservation  - JT
 app.post("/api/new", function(req, res) {
     let reservation = req.body;
     let added = saveReservation(reservation);
     return res.json(added);
 });
 
-// tables
+// tables render - JT
 app.get("/api/tables", function(req, res) {
     // set file location
     const file = './reservations.json';
@@ -58,7 +94,7 @@ app.get("/api/tables", function(req, res) {
     return res.json(false);
 });
 
-// waitlist
+// waitlist render - JT
 app.get("/api/waitlist", function(req, res) {
     // set file location
     const file = './reservations.json';
@@ -70,7 +106,7 @@ app.get("/api/waitlist", function(req, res) {
     return res.json(false);
 });
 
-// delete reservation 
+// delete reservation - JT
 app.delete("/api/tables:tableid?", function(req, res) {
     const deleteMe = req.param.tableid;
     // set file location

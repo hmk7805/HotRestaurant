@@ -8,7 +8,30 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<!--Custom Styling - AM -->
+	<style>
+		body {
+			background-color: black
+		}
+		
+		button.btn.btn-lg.btn-primary {
+			outline: none;
+		}
+		
+		button.btn.btn-lg.btn-danger {
+			outline: none;
+		}
 
+		button.btn.btn-lg.btn-default {
+			outline: none;
+		}
+		h1.text-center {
+			font-family: 'Fredericka the Great', cursive;
+		}
+		h2.text-center {
+			font-family: 'Fredericka the Great', cursive;
+		}
+	</style>
 </head>
 <body>
 
@@ -62,8 +85,9 @@
 </body>
 
 
-<!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS LOADED FROM OUR SERVER -->
+<!-- Server Calls - HK -->
 <script type="text/javascript">
+// Dynamically build wells for the table reservations with data retrieved from api - HK
 $.get("/api/tables", function(res){
 	console.log(JSON.stringify(res));
 	res.forEach(function(obj){
@@ -81,6 +105,7 @@ $.get("/api/tables", function(res){
 		$("#" + obj.unique_id).append(content);
 	});
 });
+// Dynamically build wells for the waitlist reservations with data retrieved from api - HK
 $.get("/api/waitlist", function(res){
 	console.log(JSON.stringify(res));
 	res.forEach(function(obj){
@@ -97,15 +122,17 @@ $.get("/api/waitlist", function(res){
 		content.text(`ID: ${obj.unique_id} Name: ${obj.name}`);
 		$("#" + obj.unique_id).append(content);
 	});
+//Event handler for the clear function on the DOM - HK
 	$("#clear").on("click", function(){
 		$.ajax(
 			{
-			method: "delete",
-			path: "/api/tables"
-		}).done(function() {
-			$("#tableSection").empty();
-			$("#waitlistSection").empty();
-		});
+			type: "DELETE",
+			url: "/api/tables",
+			success: function() {
+				$("#tableSection").empty();
+				$("#waitlistSection").empty();
+			}
+		}).done();
 	});
 });
 
