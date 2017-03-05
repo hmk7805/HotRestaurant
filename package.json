@@ -1,8 +1,8 @@
 {
   "name": "reservations",
   "version": "1.0.0",
-  "description": "",
-  "main": "express.js",
+  "description": "This app tracks table reservations for a restaurant",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
