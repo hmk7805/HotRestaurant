@@ -87,7 +87,7 @@ function saveReservation(reservation) {
     let contents = jsonfile.readFileSync(file);
     if (contents) {
         // check for max 5 reservations, else waitlist
-        if (contents.reservation.length < 6 ) {
+        if (contents.reservation.length < 5 ) {
             // push new reservation to table
             contents.reservation.push(reservation);
         } else {
