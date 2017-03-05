@@ -1,106 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Tables Page</title>
-
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<!--Custom Styling - AM -->
-	<style>
-		body {
-			background-color: black
-		}
-		
-		button.btn.btn-lg.btn-primary {
-			outline: none;
-		}
-		
-		button.btn.btn-lg.btn-danger {
-			outline: none;
-		}
-		
-		button.btn.btn-lg.btn-default {
-			outline: none;
-		}
-		
-		h1.text-center {
-			font-family: 'Fredericka the Great', cursive;
-		}
-		
-		h2.text-center {
-			font-family: 'Fredericka the Great', cursive;
-		}
-		
-		button.btn.btn-lg.btn-primary {
-			-webkit-border-radius: 28;
-			-moz-border-radius: 28;
-			border-radius: 28px;
-			font-family: Courier New;
-			color: #ffffff;
-			font-size: 20px;
-			background: #b3cee0;
-			padding: 10px 10px 10px 10px;
-			text-decoration: none;
-		}
-		
-		button.btn.btn-lg.btn-primary:hover {
-			background: #47728c;
-			background-image: -webkit-linear-gradient(top, #47728c, #3498db);
-			background-image: -moz-linear-gradient(top, #47728c, #3498db);
-			background-image: -ms-linear-gradient(top, #47728c, #3498db);
-			background-image: -o-linear-gradient(top, #47728c, #3498db);
-			background-image: linear-gradient(to bottom, #47728c, #3498db);
-			text-decoration: none;
-		}
-		button.btn.btn-lg.btn-danger {
-			-webkit-border-radius: 28;
-			-moz-border-radius: 28;
-			border-radius: 28px;
-			font-family: Courier New;
-			color: #ffffff;
-			font-size: 20px;
-			background: #b3cee0;
-			padding: 10px 10px 10px 10px;
-			text-decoration: none;
-		}
-		
-		button.btn.btn-lg.btn-danger:hover {
-			background: #47728c;
-			background-image: -webkit-linear-gradient(top, #47728c, #3498db);
-			background-image: -moz-linear-gradient(top, #47728c, #3498db);
-			background-image: -ms-linear-gradient(top, #47728c, #3498db);
-			background-image: -o-linear-gradient(top, #47728c, #3498db);
-			background-image: linear-gradient(to bottom, #47728c, #3498db);
-			text-decoration: none;
-		}
-	</style>	
+    <meta charset="UTF-8">
+    <title>Mesa Table Reservation</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!--Custom Styling - AM-->
+    <style>
+    div.jumbotron {
+        margin-bottom: 0px;
+        background-image: url(luminarias.jpg);
+        background-position: 0% 25%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: white;
+        text-shadow: black 0.3em 0.3em 0.3em;
+    }
+    
+    span.glyphicon.glyphicon-fire {
+        color: orange;
+    }
+    
+    body {
+        background-color: #c9c1b6;
+    }
+    
+    button.btn.btn-lg.btn-primary {
+        outline: none;
+    }
+    
+    button.btn.btn-lg.btn-danger {
+        outline: none;
+    }
+    
+    button.btn.btn-lg.btn-default {
+        outline: none;
+    }
+    
+    h1.text-center {
+        font-family: 'Fredericka the Great', cursive;
+    }
+    
+    h2.text-center {
+        font-family: 'Fredericka the Great', cursive;
+    }
+    
+    button.btn.btn-lg.btn-primary {
+        border: 2px solid #ffffff;
+        background: #000000;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#000000));
+        background: -webkit-linear-gradient(top, #ffffff, #000000);
+        background: -moz-linear-gradient(top, #ffffff, #000000);
+        background: -ms-linear-gradient(top, #ffffff, #000000);
+        background: -o-linear-gradient(top, #ffffff, #000000);
+        background-image: -ms-linear-gradient(top, #ffffff 0%, #000000 100%);
+        padding: 10px 20px;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        border-radius: 30px;
+        -webkit-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1px 0;
+        -moz-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1px 0;
+        box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1px 0;
+        text-shadow: #080808 0 1px 0;
+        color: #ffffff;
+        font-size: 15px;
+        font-family: helvetica, serif;
+        text-decoration: none;
+        vertical-align: middle;
+    }
+    
+    button.btn.btn-lg.btn-primary:hover {
+        border: 2px solid #fcfcfc;
+        text-shadow: #000000 0 1px 0;
+        background: #000000;
+        background: -webkit-gradient(linear, left top, left bottom, from(#b0b0b0), to(#000000));
+        background: -webkit-linear-gradient(top, #b0b0b0, #000000);
+        background: -moz-linear-gradient(top, #b0b0b0, #000000);
+        background: -ms-linear-gradient(top, #b0b0b0, #000000);
+        background: -o-linear-gradient(top, #b0b0b0, #000000);
+        background-image: -ms-linear-gradient(top, #b0b0b0 0%, #000000 100%);
+        color: #000000;
+    }
+    
+    button.btn.btn-lg.btn-primary:active {
+        text-shadow: #ffffff 0 1px 0;
+        border: 2px solid #ffffff;
+        background: #000000;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+        background: -webkit-linear-gradient(top, #ffffff, #000000);
+        background: -moz-linear-gradient(top, #ffffff, #000000);
+        background: -ms-linear-gradient(top, #ffffff, #000000);
+        background: -o-linear-gradient(top, #ffffff, #000000);
+        background-image: -ms-linear-gradient(top, #ffffff 0%, #000000 100%);
+        color: #fff;
+    }
+    
+    button.btn.btn-lg.btn-danger {
+        border: 2px solid #ffffff;
+        background: #000000;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#000000));
+        background: -webkit-linear-gradient(top, #ffffff, #000000);
+        background: -moz-linear-gradient(top, #ffffff, #000000);
+        background: -ms-linear-gradient(top, #ffffff, #000000);
+        background: -o-linear-gradient(top, #ffffff, #000000);
+        background-image: -ms-linear-gradient(top, #ffffff 0%, #000000 100%);
+        padding: 10px 20px;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        border-radius: 30px;
+        -webkit-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1px 0;
+        -moz-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1px 0;
+        box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1px 0;
+        text-shadow: #080808 0 1px 0;
+        color: #ffffff;
+        font-size: 15px;
+        font-family: helvetica, serif;
+        text-decoration: none;
+        vertical-align: middle;
+    }
+    
+    button.btn.btn-lg.btn-danger:hover {
+        border: 2px solid #fcfcfc;
+        text-shadow: #000000 0 1px 0;
+        background: #000000;
+        background: -webkit-gradient(linear, left top, left bottom, from(#b0b0b0), to(#000000));
+        background: -webkit-linear-gradient(top, #b0b0b0, #000000);
+        background: -moz-linear-gradient(top, #b0b0b0, #000000);
+        background: -ms-linear-gradient(top, #b0b0b0, #000000);
+        background: -o-linear-gradient(top, #b0b0b0, #000000);
+        background-image: -ms-linear-gradient(top, #b0b0b0 0%, #000000 100%);
+        color: #000000;
+    }
+    
+    button.btn.btn-lg.btn-danger:active {
+        text-shadow: #ffffff 0 1px 0;
+        border: 2px solid #ffffff;
+        background: #000000;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+        background: -webkit-linear-gradient(top, #ffffff, #000000);
+        background: -moz-linear-gradient(top, #ffffff, #000000);
+        background: -ms-linear-gradient(top, #ffffff, #000000);
+        background: -o-linear-gradient(top, #ffffff, #000000);
+        background-image: -ms-linear-gradient(top, #ffffff 0%, #000000 100%);
+        color: #fff;
+    }
+    </style>
 </head>
+
 <body>
-
-	<div class="container">
-
-		<div class="jumbotron">
-			<h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
-			<hr>
-			<h2 class="text-center">We only have 5 tables! Book your seat before they all are gone!</h2>
-			<br>
-
-			<div class="text-center">
-				<a href="/tables"><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
-				<a href="/reserve"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-credit-card"></span> Make Reservation</button></a>
-			</div>
-
-		</div>
-
-    <footer class="footer">
-      <div class="container">
-	        <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
-      </div>
-    </footer>
-
-	</div>
-
-
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center"><span class="glyphicon glyphicon-fire"></span>MESA</h1>
+            <hr>
+            <h2 class="text-center">We only have 5 tables! Book your seat before they all are gone!</h2>
+            <br>
+            <div class="text-center">
+                <a href="/tables">
+                    <button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button>
+                </a>
+                <a href="/reserve">
+                    <button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-credit-card"></span> Make Reservation</button>
+                </a>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
+            </div>
+        </footer>
+    </div>
 </body>
+
 </html>

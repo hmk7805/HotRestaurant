@@ -17,6 +17,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+//to serve static files such as images - HK
+//the static path here will not be included in the URL for any of these resources - HK
+app.use(express.static('images'));
+
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
@@ -75,6 +79,26 @@ app.get("/reserve", function(req, res) {
 });
 
 // api
+// save new reservation - JT
+function saveReservation(reservation) {
+    // set file location
+    const file = './reservations.json';
+    // read in file contents
+    let contents = jsonfile.readFileSync(file);
+    if (contents) {
+        // check for max 5 reservations, else waitlist
+        if (contents.reservation.length < 6 ) {
+            // push new reservation to table
+            contents.reservation.push(reservation);
+        } else {
+            // push new reservation to waitlist
+            contents.waitlist.push(reservation);
+        }
+        // write updated content to file 
+        jsonfile.writeFileSync(file, contents, {spaces: 2});
+    }
+    return;
+}
 // new reservation  - JT
 app.post("/api/new", function(req, res) {
     let reservation = req.body;
