@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
+  "contributors": ["Hannah King", "Jarrett Tolman", "Melinda Owens", "Alex Murray"],
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.0",
